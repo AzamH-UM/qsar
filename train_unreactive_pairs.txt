@@ -1,0 +1,88 @@
+305 17-2 1-2 32-2 2-2
+334 2-2 32-2
+371 17-2 2-2 1-2 32-2 18-2
+284 2-2 1-2
+59_clade 1-2 18-2
+71_function_known 1-2 18-2
+89_hypothetical 1-2 18-2
+101_hypothetical 1-2 18-2
+305a 17-2 2-2 1-2 32-2 18-2
+334a 32-2
+371a 17-2 2-2 1-2 32-2 18-2
+284a 2-2 1-2 32-2
+60_clade 1-2 18-2
+72_function_known 1-2 18-2
+90_hypothetical 1-2 18-2
+102_hypothetical 1-2 18-2
+306 17-2 1-2 32-2 2-2
+335 32-2
+382 2-2
+61_clade 1-2
+73_function_known 1-2 18-2
+91_hypothetical 1-2 18-2
+103_hypothetical 1-2 18-2
+306a 17-2 2-2 1-2 32-2 18-2
+335a 32-2
+382a 2-2
+62_clade 1-2 18-2
+74_function_known 1-2 18-2
+92_hypothetical 1-2 18-2
+104_hypothetical 1-2 18-2
+311c 1-2
+346 2-2 32-2
+304 17-2 1-2 2-2
+51_clade 18-2
+63_clade 1-2 18-2
+81_function_known 18-2
+93_hypothetical 1-2 18-2
+105_hypothetical 1-2 18-2
+311a 2-2 1-2 32-2
+346a 2-2 32-2
+304a 17-2 2-2 1-2 32-2 18-2
+52_clade 18-2
+64_clade 1-2 18-2
+82_function_known 1-2 18-2
+94_hypothetical 1-2 18-2
+afod 1-2
+312 2-2
+354 17-2 32-2 2-2
+400 17-2 2-2 1-2 32-2 18-2
+53_clade 1-2 18-2
+65_clade 1-2 18-2
+83_function_known 1-2 18-2
+95_hypothetical 1-2 18-2
+312a 2-2 1-2
+354a 17-2
+400a 17-2 2-2 1-2 32-2 18-2
+54_clade 1-2 18-2
+84_function_known 1-2 18-2
+96_hypothetical 1-2 18-2
+321 2-2
+369 2-2
+401 17-2 18-2 32-2 2-2
+55_clade 1-2 18-2
+67_clade 1-2 18-2
+85_function_known 1-2 18-2
+97_hypothetical 1-2 18-2
+321a 2-2 1-2 32-2
+369a 2-2
+401a 17-2 2-2 1-2 32-2 18-2
+56_clade 1-2 18-2
+68_function_known 1-2 18-2
+86_hypothetical 1-2 18-2
+98_hypothetical 1-2 18-2
+333 2-2 1-2 32-2
+370 17-2 2-2
+468 17-2 2-2 1-2 32-2 18-2
+57_clade 1-2 18-2
+69_function_known 1-2 18-2
+87_hypothetical 1-2 18-2
+99_hypothetical 1-2 18-2
+333a 2-2 32-2
+370a 17-2 1-2 32-2 2-2
+468a 17-2 2-2 1-2 32-2 18-2
+58_clade 1-2 18-2
+70_function_known 1-2 18-2
+88_hypothetical 1-2 18-2
+100_hypothetical 1-2 18-2
+311 17-2 1-2 2-2

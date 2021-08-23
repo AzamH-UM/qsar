@@ -1,0 +1,125 @@
+*Generate grid for protein-ligand docked structure
+*
+
+!set protein = 278
+!set ligand = 1-2
+!set griddir = qsar/reactive_grids
+!set dim = 10
+!spacing = 0.5
+
+
+!read rtf/params for protein/ligand docked structure
+open unit 1 read card name "toppar/top_all36_prot.rtf"
+read rtf card unit 1
+
+open unit 1 read card name "toppar/par_all36_prot.prm"
+read param card unit 1 flex
+
+!change bomlev for NBfix
+bomlev -2
+open unit 1 read card name "toppar/top_all36_cgenff.rtf"
+read rtf card unit 1 append
+
+open unit 1 read card name "toppar/par_all36_cgenff.prm"
+read param card unit 1 flex append
+bomlev 0
+
+stream toppar/st2_fadh.str
+stream str_ligands/@ligand.str
+
+
+!read in protein/ligand docking 
+open unit 1 read form name pdb_with_ligand/@protein_@ligand.psf
+read psf card unit 1
+
+open unit 1 read form name pdb_with_ligand/@protein_@ligand.pdb
+read coor pdb unit 1 resid
+
+
+! Find the center of the binding site
+coor stat select resn LIG end
+set xcen = ?xave
+set ycen = ?yave
+set zcen = ?zave
+
+!read rtf/params for probe atoms
+open unit 1 read card name  "toppar/probes.rtf"
+read rtf card unit 1 append
+
+open unit 1 read card name "toppar/probes.prm"
+read param  card unit 1 flex append
+
+
+
+! Generate test probe atoms
+read sequ card
+* title
+*
+1
+prob
+generate  prob  setup
+
+! Delete all atoms but single representative for first grid test
+delete atom select segid prob .and. .not. type p1 end
+
+
+! Set-up position of test atom
+scalar x set @xcen select segid prob end
+scalar y set @ycen select segid prob end
+scalar z set @zcen select segid prob end
+
+! Fix protein/ligand atoms
+cons fix select .NOT. resn PROB end
+energy
+
+open unit 3 write form name @griddir/@protein_@ligand.ascii
+title
+* Test grid for system
+*
+grid generate xmax @dim ymax @dim zmax @dim xcen @xcen ycen @ycen zcen @zcen -
+     force 300 dgrid @spacing select segid prob end outu 3 formatted 
+
+grid clear
+
+open unit 3 read form name @griddir/@protein_@ligand.ascii
+grid read unit 3 formatted select type p1 end 
+close unit 3
+
+! Generate positions on grid
+energy inbfrq 0
+
+Calc Xmax = @Xcen + @dim/2
+Calc Ymax = @ycen + @dim/2
+Calc zmax = @zcen + @dim/2
+Calc Xmin = @Xcen - @dim/2
+Calc Ymin = @ycen - @dim/2
+Calc zmin = @zcen - @dim/2
+
+open unit 12  write form name @griddir/@protein_@ligand_gridpoints.log
+set x = @xmax
+label ix
+  set y = @ymax
+  label iy
+     set z = @zmax
+     label iz
+
+       scalar x set @x select type p1 end
+       scalar y set @y select type p1 end
+       scalar z set @z select type p1 end
+       coor stat sele type p1 end
+       energy
+      
+      
+      write title unit 12
+      * @x @y @z ?Grvd ?Grel 
+      *
+      
+       Calc z = @z - @spacing
+     if z ge @zmin goto iz
+     Calc y = @y - @spacing
+  if y ge @ymin goto iy
+  Calc x = @x - @spacing
+if x ge @xmin goto ix
+
+
+stop
