@@ -63,6 +63,9 @@ def read_log(logfile):
         vdw = float(vdw)
         elec = float(elec)
         
+        #because elec has large negative numbers and we add the min, use -elec
+        elec = -1 * elec
+        
         '''
         if vdw > max_vdw:
           vdw = max_vdw
