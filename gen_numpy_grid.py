@@ -8,7 +8,7 @@ import numpy as np
 cmds = []   #commands to use gen_grid.inp
 pairs = []  #hold model lig pairs
 griddirs = [] #hold path to model lig grids
-dimension = 10  #xyz dimensions of grid
+dimension = 20  #xyz dimensions of grid
 spacing = .5    #spacing between grid potints
 max_vdw = 1000   
 max_elec = 1000

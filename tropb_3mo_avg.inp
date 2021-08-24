@@ -1,0 +1,18 @@
+*Read in QM/MM refined structure of TropB docked with 3mo and get average coords of ligand
+
+!read in rtf and param
+read rtf card name toppar/top_all36_prot.rtf
+read param card name toppar/par_all36_prot.prm flex
+read rtf card name toppar/top_all36_cgenff.rtf append
+bomlev -2
+read param card name toppar/par_all36_cgenff.prm flex append
+bomlev 0
+
+stream toppar/toppar_water_ions.str
+stream toppar/st2_fadh.str
+
+!get coordinates of ligand in tropb to use in grid generation and docking
+read psf card name pdb/tropb_active.psf
+read coor pdb name pdb/tropb_active.pdb resid 
+coor stat sele segid SUB end
+delete atom select all end

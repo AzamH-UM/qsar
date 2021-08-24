@@ -37,10 +37,15 @@ read coor pdb unit 1 resid
 
 
 ! Find the center of the binding site
-coor stat select resn LIG end
-set xcen = ?xave
-set ycen = ?yave
-set zcen = ?zave
+!coor stat select resn LIG end
+!set xcen = ?xave
+!set ycen = ?yave
+!set zcen = ?zave
+
+!Use TropB 3MO coords as center
+set xcen = 57.135381
+set ycen = 45.175238
+set zcen = 46.061762
 
 !read rtf/params for probe atoms
 open unit 1 read card name  "toppar/probes.rtf"
