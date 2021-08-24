@@ -63,8 +63,9 @@ def read_log(logfile):
         vdw = float(vdw)
         elec = float(elec)
         
-        #because elec has large negative numbers and we add the min, use -elec
-        elec = -1 * elec
+        #because elec can have both large positive and negative values
+        elec = abs(elec)
+       
         
         '''
         if vdw > max_vdw:
@@ -93,17 +94,20 @@ def read_log(logfile):
   print(elec_array)
   
   if np.amin(vdw_array) < 0:
-    vdw_array = vdw_array - np.amin(vdw_array) + 1
+    vdw_array = vdw_array - np.amin(vdw_array)
     
   if np.amin(elec_array) < 0:
-    elec_array = elec_array - np.amin(elec_array) + 1
+    elec_array = elec_array - np.amin(elec_array)
+  
+  vdw_array = vdw_array + 1
+  elec_array = elec_array + 1
   
   print('min + 1')
   print(vdw_array)
   print(elec_array)
   
   vdw_array = np.log10(vdw_array)
-  #elec_array = np.log10(elec_array)
+  elec_array = np.log10(elec_array)
   
   print('log10')
   print(vdw_array)
