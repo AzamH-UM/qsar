@@ -63,6 +63,7 @@ def read_log(logfile):
         vdw = float(vdw)
         elec = float(elec)
         
+        '''
         if vdw > max_vdw:
           vdw = max_vdw
         if elec > max_elec:
@@ -72,6 +73,8 @@ def read_log(logfile):
           vdw = min_vdw
         if elec < min_elec:
           elec = min_elec
+          
+        '''
         
         #add data to numpy array: in numpy first index is depth, second is row, third is column
         #I want z to select matrix, x to be column, and y to be row
@@ -81,8 +84,34 @@ def read_log(logfile):
         counter+= 1
   
   #normalize data (min max feature scaling) x' = (x - min(x)) / (max(x) - min(x))
+  #new: add smallest value + 1 and take log
+  print('unchanged arrays')
+  print(vdw_array)
+  print(elec_array)
+  
+  if np.amin(vdw_array) < 0:
+    vdw_array = vdw_array - np.amin(vdw_array) + 1
+    
+  if np.amin(elec_array) < 0:
+    elec_array = elec_array - np.amin(elec_array) + 1
+  
+  print('min + 1')
+  print(vdw_array)
+  print(elec_array)
+  
+  vdw_array = np.log10(vdw_array)
+  elec_array = np.log10(elec_array)
+  
+  print('log10')
+  print(vdw_array)
+  print(elec_array)
+  
   norm_vdw_array = (vdw_array - np.amin(vdw_array)) / float(np.amax(vdw_array) - np.amin(vdw_array))
   norm_elec_array = (elec_array - np.amin(elec_array)) / float(np.amax(elec_array) - np.amin(elec_array))
+  
+  print('normalized')
+  print(norm_vdw_array)
+  print(norm_elec_array)
   
   grid_array = np.stack([norm_vdw_array, norm_elec_array], axis = 3)
   
@@ -115,7 +144,7 @@ else:
   print(griddir)
   
   out = os.popen(cmd).read()
-  print(out)
+  #print(out)
   
   #process charmm output to numpy
   logfile = os.path.join(griddir, pair + '_gridpoints.log')

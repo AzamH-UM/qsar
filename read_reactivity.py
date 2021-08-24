@@ -62,7 +62,7 @@ train_dict = dict()
 test_dict = dict()
 
 #first go through stereodata and initialize dictionary to be two sets
-'''
+
 #replace abbreivations with full name and remove Anc
 def replace_abbrev(name):
   if name == name: #skip NaN
@@ -101,7 +101,7 @@ for column in protein_names.columns:
         train_dict[protein][0].add('1-2')
         
 
-'''
+
     
 #next go through reactivity screening with other ligands
 #jgi + other ligands
