@@ -60,7 +60,7 @@ prob
 generate  prob  setup
 
 ! Delete all atoms but single representative for first grid test
-delete atom select segid prob .and. .not. type p1 end
+delete atom select segid prob .and. .not. type p11 end
 
 
 ! Set-up position of test atom
@@ -82,7 +82,7 @@ grid generate xmax @dim ymax @dim zmax @dim xcen @xcen ycen @ycen zcen @zcen -
 grid clear
 
 open unit 3 read form name @griddir/@protein_@ligand.ascii
-grid read unit 3 formatted select type p1 end 
+grid read unit 3 formatted select type p11 end 
 close unit 3
 
 ! Generate positions on grid
@@ -103,10 +103,10 @@ label ix
      set z = @zmax
      label iz
 
-       scalar x set @x select type p1 end
-       scalar y set @y select type p1 end
-       scalar z set @z select type p1 end
-       coor stat sele type p1 end
+       scalar x set @x select type p11 end
+       scalar y set @y select type p11 end
+       scalar z set @z select type p11 end
+       coor stat sele type p11 end
        energy
       
       
