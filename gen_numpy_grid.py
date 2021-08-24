@@ -8,8 +8,8 @@ import numpy as np
 cmds = []   #commands to use gen_grid.inp
 pairs = []  #hold model lig pairs
 griddirs = [] #hold path to model lig grids
-dimension = 10  #xyz dimensions of grid
-spacing = .5    #spacing between grid potints
+dimension = 14  #xyz dimensions of grid
+spacing = .25    #spacing between grid potints
 max_vdw = 1000   
 max_elec = 1000
 min_vdw = -1000
@@ -119,10 +119,16 @@ else:
   
   #process charmm output to numpy
   logfile = os.path.join(griddir, pair + '_gridpoints.log')
+  asciifile = os.path.join(griddir, pair + '.ascii')
   grid_array = read_log(logfile)
   #save to .npy file
   grid_file = os.path.join(griddir, pair + '.npy')
   np.save(grid_file, grid_array)
+  
+  #delete old grid files
+  os.remove(logfile)
+  os.remove(asciifile)
+  
   
   
 
