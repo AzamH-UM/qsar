@@ -103,7 +103,7 @@ def read_log(logfile):
   print(elec_array)
   
   vdw_array = np.log10(vdw_array)
-  elec_array = np.log10(elec_array)
+  #elec_array = np.log10(elec_array)
   
   print('log10')
   print(vdw_array)
